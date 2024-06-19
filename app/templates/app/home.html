@@ -1,0 +1,62 @@
+{% extends 'app/base.html' %}
+{% load static %}
+
+{% block title %}Home{% endblock title %}
+
+{% block banner-slider %}
+<div id="carouselExampleSlidesOnly" class="carousel slide" data-bs-ride="carousel">
+  <div class="carousel-inner">
+    <div class="carousel-item active">
+      <img src="{% static 'app/images/banner/b1.jpg' %}" class="d-block w-100" alt="banner image">
+    </div>
+    <div class="carousel-item">
+      <img src="{% static 'app/images/banner/b2.png' %}" class="d-block w-100" alt="banner image">
+    </div>
+    <div class="carousel-item">
+      <img src="{% static 'app/images/banner/b3.jpg' %}" class="d-block w-100" alt="banner image">
+    </div>
+    <div class="carousel-item">
+      <img src="{% static 'app/images/banner/b4.jpg' %}" class="d-block w-100" alt="banner image">
+    </div>
+  </div>
+</div>
+{% endblock banner-slider %}
+
+{% block information %}
+<div class="container">
+  <div class="row bg-danger bg-gradient text-center p-5 text-white border-bottom shadow">
+    <h1>Products</h1>
+    <small class="fs-5">Welcome to Amnaya, your one-stop online store for all pooja-related needs. Our vast range of products comprises essential and sacred items along with traditional objects and ceremonial components. Pooja shopping was never this easy as you browse through our virtual store and perform transactions on a secure platform. Allow Amnaya to lend you a hand and take care of all your spiritual requirements, now just a delivery away!</small>
+  </div>
+</div>
+{% endblock information %}
+
+{% block main-content %}
+<div class="container">
+  <h2 class="text-center">Our Products</h2>
+  <br><br>
+  <div class="row">
+    {% for product in data %}
+    <div class="col-md-4 col-sm-4">
+        <div class="goodnesssec buttermilk curdbgpro">
+            {% with sample=product.classified %}
+                <a href="{% url 'category' sample %}">
+            {% endwith %}
+                    <div class="goodnessseccont text-center">
+                        <img src="http://127.0.0.1:5000{{ product.Category_image }}" class="img-responsive center-block" alt="{{ product.category }}">
+                        <p class="mlkpro">{{ product.Category }}</p>
+                    </div>
+                </a>
+        </div>
+    </div>
+{% endfor %}
+
+  </div>
+</div>
+<div class="social-icons">
+  <a href="https://www.facebook.com/vamshikrishnachowdhary.gurram"target="_blank"><img src="{% static 'fb.png' %}" alt="Facebook"></a>
+  <a href="https://www.instagram.com/ig_hiccup" target="_blank"><img src="{% static 'twitter.png' %}" alt="Twitter"></a>
+  <a href="https://www.instagram.com/ig_hiccup"target="_blank"><img src="{% static 'instagram.png' %}" alt="Instagram"></a>
+</div>
+{% endblock main-content %}
+
